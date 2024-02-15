@@ -25,7 +25,7 @@ import SimpleITK as sitk
 import numpy as np
 from numpy import typing as npt
 
-import image_io as iio
+import recon_surf.image_io as iio
 
 
 HELPTEXT = """
@@ -492,11 +492,7 @@ def get_brain_centroid(itk_mask: sitk.Image) -> np.ndarray:
     _logger.debug(f"centroid voxel: {centroid_index}")
     return itk_mask.TransformPhysicalPointToIndex(centroid_world)
 
-
-if __name__ == "__main__":
-
-    # Command Line options are error checking done here
-    options = options_parse()
+def main (options):
     LOGLEVEL = (logging.WARNING, logging.INFO, logging.DEBUG)
     FORMAT = "" if options.verbosity < 0 else "%(levelname)s (%(module)s:%(lineno)s): "
     FORMAT += "%(message)s"
@@ -565,7 +561,6 @@ if __name__ == "__main__":
         logger.info(f"writing: {options.outvol}")
         iio.writeITKimage(itk_outvol, options.outvol, image_header)
 
-
     if options.rescalevol == "skip rescaling":
         logger.info("Skipping WM normalization, ignoring talairach and aseg inputs")
     else:
@@ -575,8 +570,8 @@ if __name__ == "__main__":
         if options.aseg:
             # used to be 110, but we found experimentally, that freesurfer wm-normalized
             # intensity insde the WM mask is closer to 105 (but also quite inconsistent).
-            # So when we have a WM mask, we need to use 105 and not 110 as for the 
-            # percentile approach above. 
+            # So when we have a WM mask, we need to use 105 and not 110 as for the
+            # percentile approach above.
             target_wm = 105.
 
             logger.info(f"normalize WM to {target_wm:.1f} (find WM from aseg)")
@@ -616,4 +611,11 @@ if __name__ == "__main__":
         logger.info(f"writing: {options.rescalevol}")
         iio.writeITKimage(itk_bfcorr_image, options.rescalevol, image_header)
 
-    sys.exit(0)
+    return 0
+
+
+if __name__ == "__main__":
+
+    # Command Line options are error checking done here
+    options = options_parse()
+    sys.exit(main(options))
