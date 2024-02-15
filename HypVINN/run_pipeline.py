@@ -124,7 +124,8 @@ if __name__ == "__main__":
             os.makedirs(os.path.join(args.out_dir, 'mri','transforms'), exist_ok=True)
             os.makedirs(os.path.join(args.out_dir, 'stats'), exist_ok=True)
             os.makedirs(os.path.join(args.out_dir, 'qc_snapshots'), exist_ok=True)
-            os.makedirs(os.path.join(args.out_dir, 'logs'), exist_ok=True)
+            os.makedirs(os.path.join(args.out_dir, 'scripts'), exist_ok=True)
+
 
         LOGGER.info("Analyzing HypVINN segmenation pipeline on Subject: {}".format(args.sid))
         LOGGER.info("Output will be stored in: {}".format(args.out_dir))
