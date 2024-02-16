@@ -17,7 +17,7 @@ def run_cmd(cmd):
         raise
     print('\n')
 
-data_dir = '/data/RS/output'
+data_dir = '/data/UKBiobank/output'
 fs_licence = '/fs_license/.license'
 t1_prefix = '*orig_nu.mgz'
 t2_prefix = None#'*T2*.nii.gz'
