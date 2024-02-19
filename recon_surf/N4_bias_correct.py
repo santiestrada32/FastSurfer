@@ -25,7 +25,7 @@ import SimpleITK as sitk
 import numpy as np
 from numpy import typing as npt
 
-import recon_surf.image_io as iio
+import image_io as iio
 
 
 HELPTEXT = """
@@ -492,7 +492,11 @@ def get_brain_centroid(itk_mask: sitk.Image) -> np.ndarray:
     _logger.debug(f"centroid voxel: {centroid_index}")
     return itk_mask.TransformPhysicalPointToIndex(centroid_world)
 
-def main (options):
+
+if __name__ == "__main__":
+
+    # Command Line options are error checking done here
+    options = options_parse()
     LOGLEVEL = (logging.WARNING, logging.INFO, logging.DEBUG)
     FORMAT = "" if options.verbosity < 0 else "%(levelname)s (%(module)s:%(lineno)s): "
     FORMAT += "%(message)s"
@@ -561,6 +565,7 @@ def main (options):
         logger.info(f"writing: {options.outvol}")
         iio.writeITKimage(itk_outvol, options.outvol, image_header)
 
+
     if options.rescalevol == "skip rescaling":
         logger.info("Skipping WM normalization, ignoring talairach and aseg inputs")
     else:
@@ -611,11 +616,4 @@ def main (options):
         logger.info(f"writing: {options.rescalevol}")
         iio.writeITKimage(itk_bfcorr_image, options.rescalevol, image_header)
 
-    return 0
-
-
-if __name__ == "__main__":
-
-    # Command Line options are error checking done here
-    options = options_parse()
-    sys.exit(main(options))
+    sys.exit(0)
