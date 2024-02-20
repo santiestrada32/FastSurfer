@@ -340,7 +340,7 @@ class FastSurferVINN(FastSurferCNNBase):
             Input image [N, C, H, W].
         scale_factor : Tensor
             [MISSING] [N, 1].
-        scale_factor_out : Tensor, Optional
+        scale_factor_out : Tensor, optional
             [MISSING].
 
         Returns
