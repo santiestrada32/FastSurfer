@@ -228,8 +228,42 @@ def N4_bias_correct(t1_path,t2_path,mode,out_dir,threads=1):
     return t1_bc_path,t2_bc_path
 
 
+# def t1_to_t2_registration(t1_path,t2_path,out_dir,registration_type='coreg',bc_status=False):
+#     from HypVINN.utils.misc import run_cmd
+#     from HypVINN.data_loader.data_utils import rescale_image
+
+#     lta_path = os.path.join(out_dir,'mri','transforms','t2tot1.lta')
+#     if bc_status:
+#         t2_reg_path = os.path.join(out_dir, 'mri', 'T2_nu_reg.nii.gz')
+#     else:
+#         t2_reg_path = os.path.join(out_dir, 'mri', 'T2_reg.nii.gz')
+
+#     if registration_type == 'coreg':
+#         cmd = 'mri_coreg --mov {} --targ {} --reg {}'.format(t2_path, t1_path, lta_path)
+#         LOGGER.info(cmd)
+#         run_cmd(cmd)
+#         cmd = 'mri_vol2vol --mov {} --targ {} --lta {} --o {} --cubic --keep-precision'.format(t2_path, t1_path, lta_path, t2_reg_path)
+#     else:
+#         cmd = 'mri_robust_register --mov {} --dst {} --lta {} --mapmov {} --cost NMI'.format(t2_path, t1_path, lta_path, t2_reg_path)
+
+#     LOGGER.info(cmd)
+#     run_cmd(cmd)
+
+#     if os.path.isfile(t2_reg_path):
+#         img = nib.load(t2_reg_path)
+#         affine = img.affine
+#         header = img.header
+#         conformed_arr = rescale_image(img.get_fdata())
+#         img = nib.Nifti1Image(conformed_arr,affine,header)
+#         img.set_data_dtype(np.dtype(np.uint8))
+#         nib.save(img,filename=t2_reg_path)
+
+#     return t2_reg_path
+
+
 def t1_to_t2_registration(t1_path,t2_path,out_dir,registration_type='coreg',bc_status=False):
-    from HypVINN.utils.misc import run_cmd
+    from FastSurferCNN.utils.run_tools import Popen
+    import shutil
     from HypVINN.data_loader.data_utils import rescale_image
 
     lta_path = os.path.join(out_dir,'mri','transforms','t2tot1.lta')
@@ -239,16 +273,46 @@ def t1_to_t2_registration(t1_path,t2_path,out_dir,registration_type='coreg',bc_s
         t2_reg_path = os.path.join(out_dir, 'mri', 'T2_reg.nii.gz')
 
     if registration_type == 'coreg':
-        cmd = 'mri_coreg --mov {} --targ {} --reg {}'.format(t2_path, t1_path, lta_path)
-        LOGGER.info(cmd)
-        run_cmd(cmd)
-        cmd = 'mri_vol2vol --mov {} --targ {} --lta {} --o {} --cubic --keep-precision'.format(t2_path, t1_path, lta_path, t2_reg_path)
+        exe = shutil.which("mri_coreg")
+        if not bool(exe):
+             if os.environ.get("FREESURFER_HOME", ""):
+                     exe = os.environ["FREESURFER_HOME"] + "/bin/mri_coreg"
+             else:
+                     raise RuntimeError("Could not find mri_coreg, source FreeSurfer or set the  FREESURFER_HOME environment variable")
+        args = [exe, "--mov", t2_path, "--targ", t1_path, "--reg", lta_path]
+        LOGGER.info("Running " + " ".join(args))
+        retval = Popen(args).finish()
+        if retval.retcode != 0:
+              LOGGER.error(f"mri_coreg failed with error code {retval.retcode}. ")
+              raise RuntimeError("mri_coreg failed registration")
+
+        else:
+            exe = shutil.which('mri_vol2vol')
+            if not bool(exe):
+                if os.environ.get("FREESURFER_HOME", ""):
+                     exe = os.environ["FREESURFER_HOME"] + "/bin/mri_vol2vol"
+                 else:
+                     raise RuntimeError("Could not find mri_vol2vol, source FreeSurfer or set the  FREESURFER_HOME environment variable")
+            args = [exe, "--mov", t2_path, "--targ", t1_path, "--reg", lta_path, "--o", t2_reg_path,"--cubic","--keep-precision"]
+            LOGGER.info("Running " + " ".join(args))
+            retval = Popen(args).finish()
+            if retval.retcode != 0:
+                LOGGER.error(f"mri_vol2vol failed with error code {retval.retcode}. ")
+                raise RuntimeError("mri_vol2vol failed applying registration")
     else:
-        cmd = 'mri_robust_register --mov {} --dst {} --lta {} --mapmov {} --cost NMI'.format(t2_path, t1_path, lta_path, t2_reg_path)
-
-    LOGGER.info(cmd)
-    run_cmd(cmd)
-
+        exe = shutil.which("mri_robust_register")
+        if not bool(exe):
+             if os.environ.get("FREESURFER_HOME", ""):
+                     exe = os.environ["FREESURFER_HOME"] + "/bin/mri_robust_register"
+             else:
+                     raise RuntimeError("Could not find mri_robust_register, source FreeSurfer or set the  FREESURFER_HOME environment variable")
+        args = [exe, "--mov", t2_path, "--dst", t1_path, "--lta", lta_path,"--mapmov",t2_reg_path,"--cost NMI"]
+        LOGGER.info("Running " + " ".join(args))
+        retval = Popen(args).finish()
+        if retval.retcode != 0:
+              LOGGER.error(f"mri_robust_register failed with error code {retval.retcode}. ")
+              raise RuntimeError("mri_robust_register failed registration")
+        
     if os.path.isfile(t2_reg_path):
         img = nib.load(t2_reg_path)
         affine = img.affine
@@ -259,3 +323,5 @@ def t1_to_t2_registration(t1_path,t2_path,out_dir,registration_type='coreg',bc_s
         nib.save(img,filename=t2_reg_path)
 
     return t2_reg_path
+
+
