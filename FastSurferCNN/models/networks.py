@@ -16,7 +16,7 @@
 from typing import Dict, Optional, Union
 
 import numpy as np
-import yacs.config
+import yacs
 
 # IMPORTS
 from torch import Tensor, nn
@@ -388,7 +388,7 @@ _MODELS = {
 }
 
 
-def build_model(cfg: yacs.config.CfgNode) -> Union[FastSurferCNN, FastSurferVINN]:
+def build_model(cfg: 'yacs.config.CfgNode') -> Union[FastSurferCNN, FastSurferVINN]:
     """
     Build requested model.
 
