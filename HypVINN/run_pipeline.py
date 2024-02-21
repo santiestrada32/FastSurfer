@@ -20,6 +20,7 @@ from FastSurferCNN.utils.common import assert_no_root
 from HypVINN.run_prediction import run_hypo_seg
 from HypVINN.run_preproc import run_hypo_preproc
 from HypVINN.utils.mode_config import get_hypinn_mode_config,assert_image_inputs
+from HypVINN.utils.misc import create_expand_output_directory
 import time
 ##
 # Global Variables
@@ -122,15 +123,7 @@ if __name__ == "__main__":
             assert_image_inputs(t1_path=args.t1, t2_path=args.t2, mode=args.mode)
 
             # Create output directory if it does not already exist.
-            if args.out_dir is not None and not os.path.exists(args.out_dir):
-                LOGGER.info("Output directory does not exist. Creating it now...")
-                os.makedirs(args.out_dir)
-                os.makedirs(os.path.join(args.out_dir, 'mri','transforms'), exist_ok=True)
-                os.makedirs(os.path.join(args.out_dir, 'stats'), exist_ok=True)
-                os.makedirs(os.path.join(args.out_dir, 'qc_snapshots'), exist_ok=True)
-                os.makedirs(os.path.join(args.out_dir, 'scripts'), exist_ok=True)
-
-
+            create_expand_output_directory(args.out_dir)
             LOGGER.info("Analyzing HypVINN segmenation pipeline on Subject: {}".format(args.sid))
             LOGGER.info("Output will be stored in: {}".format(args.out_dir))
             LOGGER.info('T1 image input {}'.format(args.t1))

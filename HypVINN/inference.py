@@ -88,9 +88,6 @@ class Inference:
         # Set up model
         model = build_model(self.cfg)
         model.to(self.device)
-
-        if self.model_parallel:
-            model = torch.nn.DataParallel(model)
         self.model = model
 
     def load_checkpoint(self, ckpt):

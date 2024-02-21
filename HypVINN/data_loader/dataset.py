@@ -17,7 +17,7 @@ import torch
 from torch.utils.data import Dataset
 
 
-import HypVINN.data_loader.data_utils import transform_axial2sagittal,transform_axial2coronal
+from HypVINN.data_loader.data_utils import transform_axial2sagittal,transform_axial2coronal
 from FastSurferCNN.data_loader.data_utils import get_thick_slices
 
 import FastSurferCNN.utils.logging as logging

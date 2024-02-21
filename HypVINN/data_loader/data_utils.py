@@ -167,11 +167,15 @@ def hypo_map_prediction_sagittal2full(prediction_sag):
     return prediction_full
 
 
-def hypo_map_subseg_2_fsseg(subseg):
+def hypo_map_subseg_2_fsseg(subseg,reverse=False):
     fsseg = np.zeros_like(subseg,dtype=np.int16)
 
-    for value, name in HYPVINN_CLASS_NAMES.items():
-        fsseg[subseg == value] = FS_CLASS_NAMES[name]
-
+    if not reverse:
+        for value, name in HYPVINN_CLASS_NAMES.items():
+            fsseg[subseg == value] = FS_CLASS_NAMES[name]
+    else:
+        reverse_hypvinn = dict(map(reversed, HYPVINN_CLASS_NAMES.items()))
+        for name,value in FS_CLASS_NAMES.items():
+            fsseg[subseg == value] = reverse_hypvinn[name]
     return fsseg
 

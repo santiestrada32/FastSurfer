@@ -275,9 +275,9 @@ def t1_to_t2_registration(t1_path,t2_path,out_dir,registration_type='coreg',bc_s
     if registration_type == 'coreg':
         exe = shutil.which("mri_coreg")
         if not bool(exe):
-             if os.environ.get("FREESURFER_HOME", ""):
+            if os.environ.get("FREESURFER_HOME", ""):
                      exe = os.environ["FREESURFER_HOME"] + "/bin/mri_coreg"
-             else:
+            else:
                      raise RuntimeError("Could not find mri_coreg, source FreeSurfer or set the  FREESURFER_HOME environment variable")
         args = [exe, "--mov", t2_path, "--targ", t1_path, "--reg", lta_path]
         LOGGER.info("Running " + " ".join(args))
@@ -290,9 +290,9 @@ def t1_to_t2_registration(t1_path,t2_path,out_dir,registration_type='coreg',bc_s
             exe = shutil.which('mri_vol2vol')
             if not bool(exe):
                 if os.environ.get("FREESURFER_HOME", ""):
-                     exe = os.environ["FREESURFER_HOME"] + "/bin/mri_vol2vol"
-                 else:
-                     raise RuntimeError("Could not find mri_vol2vol, source FreeSurfer or set the  FREESURFER_HOME environment variable")
+                    exe = os.environ["FREESURFER_HOME"] + "/bin/mri_vol2vol"
+                else:
+                    raise RuntimeError("Could not find mri_vol2vol, source FreeSurfer or set the  FREESURFER_HOME environment variable")
             args = [exe, "--mov", t2_path, "--targ", t1_path, "--reg", lta_path, "--o", t2_reg_path,"--cubic","--keep-precision"]
             LOGGER.info("Running " + " ".join(args))
             retval = Popen(args).finish()
@@ -302,10 +302,10 @@ def t1_to_t2_registration(t1_path,t2_path,out_dir,registration_type='coreg',bc_s
     else:
         exe = shutil.which("mri_robust_register")
         if not bool(exe):
-             if os.environ.get("FREESURFER_HOME", ""):
-                     exe = os.environ["FREESURFER_HOME"] + "/bin/mri_robust_register"
-             else:
-                     raise RuntimeError("Could not find mri_robust_register, source FreeSurfer or set the  FREESURFER_HOME environment variable")
+            if os.environ.get("FREESURFER_HOME", ""):
+                exe = os.environ["FREESURFER_HOME"] + "/bin/mri_robust_register"
+            else:
+                raise RuntimeError("Could not find mri_robust_register, source FreeSurfer or set the  FREESURFER_HOME environment variable")
         args = [exe, "--mov", t2_path, "--dst", t1_path, "--lta", lta_path,"--mapmov",t2_reg_path,"--cost NMI"]
         LOGGER.info("Running " + " ".join(args))
         retval = Popen(args).finish()
