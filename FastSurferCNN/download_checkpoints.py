@@ -61,7 +61,7 @@ if __name__ == "__main__":
         help="Check and download CerebNet default checkpoints",
     )
     parser.add_argument(
-        "--hypnet",
+        "--hypvinn",
         default=False,
         action="store_true",
         help="Check and download HypVINN default checkpoints",
@@ -81,9 +81,9 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    if not args.vinn and not args.files and not args.cerebnet and not args.hypnet and not args.all:
+    if not args.vinn and not args.files and not args.cerebnet and not args.hypvinn and not args.all:
         print(
-            "Specify either files to download or --vinn, --cerebnet, --hypnet or --all, see help -h."
+            "Specify either files to download or --vinn, --cerebnet, --hypvinn or --all, see help -h."
         )
         exit(1)
 
@@ -103,7 +103,7 @@ if __name__ == "__main__":
         )
 
     # HypVINN checkpoints
-    if args.hypnet or args.all:
+    if args.hypvinn or args.all:
         get_checkpoints(
             HYPVINN_AXI,
             HYPVINN_COR,
