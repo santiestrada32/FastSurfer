@@ -5,12 +5,12 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Security Policy" href="SECURITY.html" /><link rel="prev" title="Singularity Support" href="singularity.html" />
 
-    <!-- Generated with Sphinx 7.4.7 and Furo 2024.07.18 -->
+    <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
         <title>Manual Edits - FastSurfer</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=613ab9ff" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
     
     
@@ -217,6 +217,7 @@
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../scripts/index.html">Scripts</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Scripts</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/BATCH.html">BATCH: brun_fastsurfer.sh</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../scripts/SLURM.html">SLURM: srun_fastsurfer.sh</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../scripts/advanced.html">Advanced scripts</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Advanced scripts</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../scripts/fastsurfercnn.html">FastSurferCNN: run_prediction.py</a></li>
@@ -334,6 +335,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/recon_surf.map_surf_label.html">recon_surf.map_surf_label</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/recon_surf.N4_bias_correct.html">recon_surf.N4_bias_correct</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/recon_surf.paint_cc_into_pred.html">recon_surf.paint_cc_into_pred</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/recon_surf.rewrite_oriented_surface.html">recon_surf.rewrite_oriented_surface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/recon_surf.rewrite_mc_surface.html">recon_surf.rewrite_mc_surface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/recon_surf.rotate_sphere.html">recon_surf.rotate_sphere</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/recon_surf.sample_parc.html">recon_surf.sample_parc</a></li>
@@ -463,7 +465,7 @@ that was provided from the first run. This can help brighten up some regions and
 <h2>2. Segmentation Edits<a class="headerlink" href="#segmentation-edits" title="Link to this heading">¶</a></h2>
 <p>You can manually edit <code class="docutils literal notranslate"><span class="pre">aparc.DKTatlas+aseg.deep.mgz</span></code>. This is similar to aseg edits in FreeSurfer. You can fill-in undersegmented regions (with the correct segmentation ID). To re-create the aseg and mask run the following command before continuing with other modules:</p>
 <ul>
-<li><p>Step 1: Assuming that you have run the full fastsurfer pipeline once as described in method_1 and succesfully produced segmentations and surfaces</p></li>
+<li><p>Step 1: Assuming that you have run the full fastsurfer pipeline once as described in method_1 and successfully produced segmentations and surfaces</p></li>
 <li><p>Step 2: Execute this command where reduce_to_aseg.py is located</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>reduce_to_aseg.py<span class="w"> </span>-i<span class="w"> </span>sid/mri/aparc.DKTatlas+aseg.deep.edited.mgz<span class="w"> </span><span class="se">\ </span>
 <span class="w">                          </span>-o<span class="w"> </span>sid/mri/aseg.auto_noCCseg.mgz<span class="w"> </span><span class="se">\</span>
@@ -471,7 +473,7 @@ that was provided from the first run. This can help brighten up some regions and
 <span class="w">                          </span>--fixwm
 </pre></div>
 </div>
-<p>Assuming you have edited <code class="docutils literal notranslate"><span class="pre">aparc.DKTatlas+aseg.deep.edited.mgz</span></code> in freeview, step_2 will produce two files i.e <code class="docutils literal notranslate"><span class="pre">aseg.auto_noCCseg.mgz</span></code> and <code class="docutils literal notranslate"><span class="pre">mask.mgz</span> </code> in the specified output folder. The ouput files can be loaded in freeview as a load volume. Edit–&gt;load volume</p>
+<p>Assuming you have edited <code class="docutils literal notranslate"><span class="pre">aparc.DKTatlas+aseg.deep.edited.mgz</span></code> in freeview, step_2 will produce two files i.e <code class="docutils literal notranslate"><span class="pre">aseg.auto_noCCseg.mgz</span></code> and <code class="docutils literal notranslate"><span class="pre">mask.mgz</span> </code> in the specified output folder. The output files can be loaded in freeview as a load volume. Edit–&gt;load volume</p>
 </li>
 <li><p>Step 3: For this step you would have to copy segmentation files produced in step_1, edited file <code class="docutils literal notranslate"><span class="pre">aparc.DKTatlas+aseg.deep.edited.mgz</span></code> and re-created file produced in step_2 in new output directory beforehand.</p>
 <p>In this step you can then run surface module as follows:</p>
@@ -499,7 +501,7 @@ that was provided from the first run. This can help brighten up some regions and
 <h2>3. Brainmask Edits:<a class="headerlink" href="#brainmask-edits" title="Link to this heading">¶</a></h2>
 <p>When surfaces go out too far, e.g. they grab dura, you can tighten the mask directly, just edit <code class="docutils literal notranslate"><span class="pre">mask.mgz</span></code>and start the <em>surface module</em>.</p>
 <ul>
-<li><p>Step 1: Assuming that you have run the full fastsurfer pipeline once as described in method_1 and succesfully produced segmentations and surfaces</p></li>
+<li><p>Step 1: Assuming that you have run the full fastsurfer pipeline once as described in method_1 and successfully produced segmentations and surfaces</p></li>
 <li><p>Step 2: Edit <code class="docutils literal notranslate"><span class="pre">mask.mgz</span></code> file in freeview</p></li>
 <li><p>Step 3: Run the pipeline again in order to get the surfaces but before running the pipeline again do not forget to copy all the segmented files in to new input and output directory.
 Note: The files in output folder should be pasted in the subjectX folder, the name of subjectX should be the same as it was used in step_1 otherwise it would raise an error of missing files even though the segmentation files exists in output folder.</p>
@@ -519,7 +521,7 @@ Note: The files in output folder should be pasted in the subjectX folder, the na
 </pre></div>
 </div>
 <p>Note: <code class="docutils literal notranslate"><span class="pre">t1-weighted-nii.gz</span></code> would be the original input mri image.</p>
-<p>We hope that this will help with (some of) your editing needs. If more edits become availble we will update this file.
+<p>We hope that this will help with (some of) your editing needs. If more edits become available we will update this file.
 Thanks for using FastSurfer.</p>
 </li>
 </ul>
@@ -611,6 +613,5 @@ Thanks for using FastSurfer.</p>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     </body>
 </html>

@@ -5,12 +5,12 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Surface pipeline: recon-surf.sh" href="recon_surf.html" /><link rel="prev" title="CerebNet: run_prediction.py" href="cerebnet.html" />
 
-    <!-- Generated with Sphinx 7.4.7 and Furo 2024.07.18 -->
+    <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
         <title>HypVINN: run_prediction.py - FastSurfer</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=613ab9ff" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
     
     
@@ -217,6 +217,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Scripts</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Scripts</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="BATCH.html">BATCH: brun_fastsurfer.sh</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SLURM.html">SLURM: srun_fastsurfer.sh</a></li>
 <li class="toctree-l2 current has-children"><a class="reference internal" href="advanced.html">Advanced scripts</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Advanced scripts</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="fastsurfercnn.html">FastSurferCNN: run_prediction.py</a></li>
@@ -334,6 +335,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/recon_surf.map_surf_label.html">recon_surf.map_surf_label</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/recon_surf.N4_bias_correct.html">recon_surf.N4_bias_correct</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/recon_surf.paint_cc_into_pred.html">recon_surf.paint_cc_into_pred</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/generated/recon_surf.rewrite_oriented_surface.html">recon_surf.rewrite_oriented_surface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/recon_surf.rewrite_mc_surface.html">recon_surf.rewrite_mc_surface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/recon_surf.rotate_sphere.html">recon_surf.rotate_sphere</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api/generated/recon_surf.sample_parc.html">recon_surf.sample_parc</a></li>
@@ -402,10 +404,10 @@ situations, it will be called from <code class="xref py py-obj docutils literal 
                                  <span class="p">[</span><span class="o">--</span><span class="n">device</span> <span class="n">DEVICE</span><span class="p">]</span>
                                  <span class="p">[</span><span class="o">--</span><span class="n">viewagg_device</span> <span class="n">VIEWAGG_DEVICE</span><span class="p">]</span>
                                  <span class="p">[</span><span class="o">--</span><span class="n">threads</span> <span class="n">THREADS</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">batch_size</span> <span class="n">BATCH_SIZE</span><span class="p">]</span>
-                                 <span class="p">[</span><span class="o">--</span><span class="n">async_io</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">allow_root</span><span class="p">]</span>
-                                 <span class="p">[</span><span class="o">--</span><span class="n">ckpt_ax</span> <span class="n">CKPT_AX</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">ckpt_cor</span> <span class="n">CKPT_COR</span><span class="p">]</span>
-                                 <span class="p">[</span><span class="o">--</span><span class="n">ckpt_sag</span> <span class="n">CKPT_SAG</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">cfg_cor</span> <span class="n">CFG_COR</span><span class="p">]</span>
-                                 <span class="p">[</span><span class="o">--</span><span class="n">cfg_ax</span> <span class="n">CFG_AX</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">cfg_sag</span> <span class="n">CFG_SAG</span><span class="p">]</span>
+                                 <span class="p">[</span><span class="o">--</span><span class="n">async_io</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">ckpt_ax</span> <span class="n">CKPT_AX</span><span class="p">]</span>
+                                 <span class="p">[</span><span class="o">--</span><span class="n">ckpt_cor</span> <span class="n">CKPT_COR</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">ckpt_sag</span> <span class="n">CKPT_SAG</span><span class="p">]</span>
+                                 <span class="p">[</span><span class="o">--</span><span class="n">cfg_cor</span> <span class="n">CFG_COR</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">cfg_ax</span> <span class="n">CFG_AX</span><span class="p">]</span>
+                                 <span class="p">[</span><span class="o">--</span><span class="n">cfg_sag</span> <span class="n">CFG_SAG</span><span class="p">]</span>
 </pre></div>
 </div>
 <section id="HypVINN.run_prediction-option_parse-named-arguments">
@@ -447,7 +449,7 @@ situations, it will be called from <code class="xref py py-obj docutils literal 
 <h2>Advanced options<a class="headerlink" href="#HypVINN.run_prediction-option_parse-advanced-options" title="Link to this heading">¶</a></h2>
 <dl class="option-list">
 <dt><kbd>--device</kbd></dt>
-<dd><p>Select device to run inference on: cpu, or cuda (= Nvidia gpu) or specify a certain gpu (e.g. cuda:1), default: auto</p>
+<dd><p>Select device to run inference on: cpu, or cuda (= Nvidia gpu) or specify a certain gpu (e.g. cuda:1), Default: auto</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">'auto'</span></code></p>
 </dd>
 <dt><kbd>--viewagg_device</kbd></dt>
@@ -466,33 +468,29 @@ situations, it will be called from <code class="xref py py-obj docutils literal 
 <dd><p>Allow asynchronous file operations (default: off). Note, this may impact the order of messages in the log, but speed up the segmentation specifically for slow file systems.</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">False</span></code></p>
 </dd>
-<dt><kbd>--allow_root</kbd></dt>
-<dd><p>Allow execution as root user.</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">False</span></code></p>
-</dd>
 <dt><kbd>--ckpt_ax</kbd></dt>
 <dd><p>axial checkpoint to load</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">/home/runner/work/FastSurfer/FastSurfer/dev/checkpoints/HypVINN_axial_v1.1.0.pkl</span></code></p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">/home/runner/work/FastSurfer/FastSurfer/src/checkpoints/HypVINN_axial_v1.1.0.pkl</span></code></p>
 </dd>
 <dt><kbd>--ckpt_cor</kbd></dt>
 <dd><p>coronal checkpoint to load</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">/home/runner/work/FastSurfer/FastSurfer/dev/checkpoints/HypVINN_coronal_v1.1.0.pkl</span></code></p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">/home/runner/work/FastSurfer/FastSurfer/src/checkpoints/HypVINN_coronal_v1.1.0.pkl</span></code></p>
 </dd>
 <dt><kbd>--ckpt_sag</kbd></dt>
 <dd><p>sagittal checkpoint to load</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">/home/runner/work/FastSurfer/FastSurfer/dev/checkpoints/HypVINN_sagittal_v1.1.0.pkl</span></code></p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">/home/runner/work/FastSurfer/FastSurfer/src/checkpoints/HypVINN_sagittal_v1.1.0.pkl</span></code></p>
 </dd>
 <dt><kbd>--cfg_cor</kbd></dt>
 <dd><p>Path to the coronal config file</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">/home/runner/work/FastSurfer/FastSurfer/dev/HypVINN/config/HypVINN_coronal_v1.1.0.yaml</span></code></p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">/home/runner/work/FastSurfer/FastSurfer/src/HypVINN/config/HypVINN_coronal_v1.1.0.yaml</span></code></p>
 </dd>
 <dt><kbd>--cfg_ax</kbd></dt>
 <dd><p>Path to the axial config file</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">/home/runner/work/FastSurfer/FastSurfer/dev/HypVINN/config/HypVINN_axial_v1.1.0.yaml</span></code></p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">/home/runner/work/FastSurfer/FastSurfer/src/HypVINN/config/HypVINN_axial_v1.1.0.yaml</span></code></p>
 </dd>
 <dt><kbd>--cfg_sag</kbd></dt>
 <dd><p>Path to the sagittal config file</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">/home/runner/work/FastSurfer/FastSurfer/dev/HypVINN/config/HypVINN_sagittal_v1.1.0.yaml</span></code></p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">/home/runner/work/FastSurfer/FastSurfer/src/HypVINN/config/HypVINN_sagittal_v1.1.0.yaml</span></code></p>
 </dd>
 </dl>
 </section>
@@ -528,7 +526,7 @@ situations, it will be called from <code class="xref py py-obj docutils literal 
 <section id="running-the-tool">
 <h2>Running the tool<a class="headerlink" href="#running-the-tool" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>The HypVINN output can be obtained by running the default  <code class="docutils literal notranslate"><span class="pre">run_fastsurfer.sh</span></code> script (for more information see <a class="reference internal" href="../index.html"><span class="std std-ref">FastSurfer documentation</span></a>).</p></li>
+<li><p>The HypVINN output can be obtained by running the default  <code class="docutils literal notranslate"><span class="pre">run_fastsurfer.sh</span></code> script (for more information see <a class="reference internal" href="../index.html"><span class="doc std std-ref">FastSurfer documentation</span></a>).</p></li>
 <li><p>HypVINN can also be run independently by running <code class="docutils literal notranslate"><span class="pre">HypVINN/run_prediction.py</span></code>, however we recommend running the whole FastSurfer pipeline as it includes all the required pre-processing steps.</p></li>
 <li><p>HypVINN has the following arguments:</p></li>
 </ul>
@@ -758,6 +756,5 @@ Imaging Neuroscience 2023; 1 1–32. doi: https://doi.org/10.1162/imag_a_00034
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     </body>
 </html>

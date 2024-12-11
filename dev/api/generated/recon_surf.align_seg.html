@@ -5,12 +5,12 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="recon_surf.create_annotation" href="recon_surf.create_annotation.html" /><link rel="prev" title="recon_surf.align_points" href="recon_surf.align_points.html" />
 
-    <!-- Generated with Sphinx 7.4.7 and Furo 2024.07.18 -->
+    <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
         <title>recon_surf.align_seg - FastSurfer</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=613ab9ff" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=302659d7" />
     
     
@@ -217,6 +217,7 @@
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../scripts/index.html">Scripts</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Scripts</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../scripts/BATCH.html">BATCH: brun_fastsurfer.sh</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../scripts/SLURM.html">SLURM: srun_fastsurfer.sh</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../scripts/advanced.html">Advanced scripts</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Advanced scripts</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../scripts/fastsurfercnn.html">FastSurferCNN: run_prediction.py</a></li>
@@ -334,6 +335,7 @@
 <li class="toctree-l3"><a class="reference internal" href="recon_surf.map_surf_label.html">recon_surf.map_surf_label</a></li>
 <li class="toctree-l3"><a class="reference internal" href="recon_surf.N4_bias_correct.html">recon_surf.N4_bias_correct</a></li>
 <li class="toctree-l3"><a class="reference internal" href="recon_surf.paint_cc_into_pred.html">recon_surf.paint_cc_into_pred</a></li>
+<li class="toctree-l3"><a class="reference internal" href="recon_surf.rewrite_oriented_surface.html">recon_surf.rewrite_oriented_surface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="recon_surf.rewrite_mc_surface.html">recon_surf.rewrite_mc_surface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="recon_surf.rotate_sphere.html">recon_surf.rotate_sphere</a></li>
 <li class="toctree-l3"><a class="reference internal" href="recon_surf.sample_parc.html">recon_surf.sample_parc</a></li>
@@ -387,15 +389,14 @@
 <span id="recon-surf-align-seg"></span><h1>recon_surf.align_seg<a class="headerlink" href="#module-recon_surf.align_seg" title="Link to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="recon_surf.align_seg.align_flipped">
-<span class="sig-prename descclassname"><span class="pre">recon_surf.align_seg.</span></span><span class="sig-name descname"><span class="pre">align_flipped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mid_slice</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/deep-mi/FastSurfer/blob/dev/recon_surf/align_seg.py#L222-L359"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#recon_surf.align_seg.align_flipped" title="Link to this definition">¶</a></dt>
-<dd><p>Registrate Left - right (make upright).</p>
-<p>Register cortial lables</p>
+<span class="sig-prename descclassname"><span class="pre">recon_surf.align_seg.</span></span><span class="sig-name descname"><span class="pre">align_flipped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mid_slice</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/deep-mi/FastSurfer/blob/dev/recon_surf/align_seg.py#L227-L361"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#recon_surf.align_seg.align_flipped" title="Link to this definition">¶</a></dt>
+<dd><p>Register selected cortical labels with left-right flipped (make upright).</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>seg</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sitk.Image</span></code></span></dt><dd><p>Segmentation Image. Should be aparc+aseg (DKT or not).</p>
 </dd>
-<dt><strong>mid_slice</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>]</span></dt><dd><p>Where the mid slice will be in upright space. Defaults to (width-1)/2.</p>
+<dt><strong>mid_slice</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a>]</span></dt><dd><p>Where the mid slice will be in upright space. Defaults to (width-1)/2.</p>
 </dd>
 </dl>
 </dd>
@@ -410,7 +411,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="recon_surf.align_seg.align_seg_centroids">
-<span class="sig-prename descclassname"><span class="pre">recon_surf.align_seg.</span></span><span class="sig-name descname"><span class="pre">align_seg_centroids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seg_mov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_dst</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">affine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/deep-mi/FastSurfer/blob/dev/recon_surf/align_seg.py#L156-L190"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#recon_surf.align_seg.align_seg_centroids" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">recon_surf.align_seg.</span></span><span class="sig-name descname"><span class="pre">align_seg_centroids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seg_mov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_dst</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">affine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/deep-mi/FastSurfer/blob/dev/recon_surf/align_seg.py#L161-L195"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#recon_surf.align_seg.align_seg_centroids" title="Link to this definition">¶</a></dt>
 <dd><p>Align the segmentations based on label centroids (rigid is default).</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -419,9 +420,9 @@
 </dd>
 <dt><strong>seg_dst</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sitk.Image</span></code></span></dt><dd><p>Path to trg segmentation.</p>
 </dd>
-<dt><strong>label_ids</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">npt.NDArray</span></code>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>]]</span></dt><dd><p>List of label ids to align. Defaults to [].</p>
+<dt><strong>label_ids</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">npt.NDArray</span></code>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>]]</span></dt><dd><p>List of label ids to align. Defaults to None.</p>
 </dd>
-<dt><strong>affine</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><code class="docutils literal notranslate"><span class="pre">bool</span></code></a></span></dt><dd><p>True if affine should be returned.
+<dt><strong>affine</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">bool</span></code></a></span></dt><dd><p>True if affine should be returned.
 False if rigid should be returned. Defaults to False.</p>
 </dd>
 </dl>
@@ -437,7 +438,7 @@ False if rigid should be returned. Defaults to False.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="recon_surf.align_seg.get_seg_centroids">
-<span class="sig-prename descclassname"><span class="pre">recon_surf.align_seg.</span></span><span class="sig-name descname"><span class="pre">get_seg_centroids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seg_mov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_dst</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/deep-mi/FastSurfer/blob/dev/recon_surf/align_seg.py#L102-L153"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#recon_surf.align_seg.get_seg_centroids" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">recon_surf.align_seg.</span></span><span class="sig-name descname"><span class="pre">get_seg_centroids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seg_mov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_dst</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/deep-mi/FastSurfer/blob/dev/recon_surf/align_seg.py#L103-L158"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#recon_surf.align_seg.get_seg_centroids" title="Link to this definition">¶</a></dt>
 <dd><p>Extract the centroids of the segmentation labels for mov and dst in RAS coords.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -446,7 +447,7 @@ False if rigid should be returned. Defaults to False.</p>
 </dd>
 <dt><strong>seg_dst</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sitk.Image</span></code></span></dt><dd><p>Target segmentation image.</p>
 </dd>
-<dt><strong>label_ids</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">npt.NDArray</span></code>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>]]</span></dt><dd><p>List of label ids to extract (Default value = []).</p>
+<dt><strong>label_ids</strong><span class="classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">npt.NDArray</span></code>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>]]</span></dt><dd><p>List of label ids to extract (Default value = []).</p>
 </dd>
 </dl>
 </dd>
@@ -463,7 +464,7 @@ False if rigid should be returned. Defaults to False.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="recon_surf.align_seg.get_vox2ras">
-<span class="sig-prename descclassname"><span class="pre">recon_surf.align_seg.</span></span><span class="sig-name descname"><span class="pre">get_vox2ras</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/deep-mi/FastSurfer/blob/dev/recon_surf/align_seg.py#L193-L220"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#recon_surf.align_seg.get_vox2ras" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">recon_surf.align_seg.</span></span><span class="sig-name descname"><span class="pre">get_vox2ras</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/deep-mi/FastSurfer/blob/dev/recon_surf/align_seg.py#L198-L225"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#recon_surf.align_seg.get_vox2ras" title="Link to this definition">¶</a></dt>
 <dd><p>Extract voxel to RAS (affine) from sitk image.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -483,7 +484,7 @@ False if rigid should be returned. Defaults to False.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="recon_surf.align_seg.options_parse">
-<span class="sig-prename descclassname"><span class="pre">recon_surf.align_seg.</span></span><span class="sig-name descname"><span class="pre">options_parse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/deep-mi/FastSurfer/blob/dev/recon_surf/align_seg.py#L67-L99"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#recon_surf.align_seg.options_parse" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">recon_surf.align_seg.</span></span><span class="sig-name descname"><span class="pre">options_parse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/deep-mi/FastSurfer/blob/dev/recon_surf/align_seg.py#L67-L100"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#recon_surf.align_seg.options_parse" title="Link to this definition">¶</a></dt>
 <dd><p>Command line option parser.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -582,6 +583,5 @@ False if rigid should be returned. Defaults to False.</p>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     </body>
 </html>
