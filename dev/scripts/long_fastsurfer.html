@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="FastSurferCNN: download_checkpoints.py" href="fastsurfercnn.download_checkpoints.html" /><link rel="prev" title="FastSurferCNN: segstats.py" href="segstats.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="BATCH: brun_fastsurfer.sh" href="BATCH.html" /><link rel="prev" title="Scripts" href="index.html" />
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
-        <title>FastSurfer Utilities - FastSurfer</title>
+        <title>LONG: long_fastsurfer.sh - FastSurfer</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -180,7 +180,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -219,7 +219,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Scripts</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Scripts</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="long_fastsurfer.html">LONG: long_fastsurfer.sh</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">LONG: long_fastsurfer.sh</a></li>
 <li class="toctree-l2"><a class="reference internal" href="BATCH.html">BATCH: brun_fastsurfer.sh</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SLURM.html">SLURM: srun_fastsurfer.sh</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="advanced.html">Advanced scripts</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Advanced scripts</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -230,7 +230,7 @@
 <li class="toctree-l3"><a class="reference internal" href="segstats.html">FastSurferCNN: segstats.py</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current has-children current-page"><a class="current reference internal" href="#">FastSurfer Utilities</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of FastSurfer Utilities</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="util.html">FastSurfer Utilities</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of FastSurfer Utilities</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="fastsurfercnn.download_checkpoints.html">FastSurferCNN: download_checkpoints.py</a></li>
 <li class="toctree-l3"><a class="reference internal" href="fastsurfercnn.generate_hdf5.html">FastSurferCNN: generate_hdf5.py</a></li>
 <li class="toctree-l3"><a class="reference internal" href="fastsurfercnn.run_model.html">FastSurferCNN: run_model.py</a></li>
@@ -369,7 +369,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="../_sources/scripts/util.rst.txt" title="View this page">
+  <a class="muted-link" href="../_sources/scripts/long_fastsurfer.rst.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -383,38 +383,90 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="fastsurfer-utilities">
-<h1>FastSurfer Utilities<a class="headerlink" href="#fastsurfer-utilities" title="Link to this heading">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="fastsurfercnn.download_checkpoints.html">FastSurferCNN: download_checkpoints.py</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="fastsurfercnn.download_checkpoints.html#full-commandline-interface-of-fastsurfercnn-download-checkpoints-py">Full commandline interface of FastSurferCNN/download_checkpoints.py</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="fastsurfercnn.generate_hdf5.html">FastSurferCNN: generate_hdf5.py</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="fastsurfercnn.generate_hdf5.html#full-commandline-interface-of-fastsurfercnn-generate-hdf5-py">Full commandline interface of FastSurferCNN/generate_hdf5.py</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="fastsurfercnn.run_model.html">FastSurferCNN: run_model.py</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="fastsurfercnn.run_model.html#model-options">Model options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fastsurfercnn.run_model.html#optimizer-options">Optimizer options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fastsurfercnn.run_model.html#data-options">Data options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fastsurfercnn.run_model.html#training-options">Training options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fastsurfercnn.run_model.html#misc-options">Misc. Options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fastsurfercnn.run_model.html#example-command-training-default-fastsurfervinn">Example Command: Training Default FastSurferVINN</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fastsurfercnn.run_model.html#example-command-training-fastsurfervinn-single-resolution">Example Command: Training FastSurferVINN (Single Resolution)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fastsurfercnn.run_model.html#example-command-training-fastsurfercnn">Example Command: Training FastSurferCNN</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fastsurfercnn.run_model.html#full-commandline-interface-of-fastsurfercnn-run-model-py">Full commandline interface of FastSurferCNN/run_model.py</a></li>
-</ul>
-</li>
-</ul>
+          <section id="long-long-fastsurfer-sh">
+<h1>LONG: long_fastsurfer.sh<a class="headerlink" href="#long-long-fastsurfer-sh" title="Link to this heading">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please also see the documentation on <a class="reference internal" href="../overview/LONG.html"><span class="doc">Longitudinal Processing</span></a>.</p>
 </div>
+<section id="usage-help-text">
+<h2>Usage help text<a class="headerlink" href="#usage-help-text" title="Link to this heading">¶</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ ./long_fastsurfer.sh --help
+Setting ENV variable FASTSURFER_HOME to script directory /home/runner/work/FastSurfer/FastSurfer/src. 
+Change via environment to location of your choice if this is undesired (export FASTSURFER_HOME=/dir/to/FastSurfer)
+
+Usage: long_fastsurfer.sh --tid &lt;tid&gt; --t1s &lt;T1_1&gt; &lt;T1_2&gt; .. --tpids &lt;tID1&gt; &lt;tID2&gt; .. [OPTIONS]
+
+long_fastsurfer.sh takes a list of T1 full head image and sequentially creates:
+     (i)   a template subject directory 
+     (ii)  directories for each processed time point in template space,
+           here you find the final longitudinal results
+
+FLAGS:
+
+  --tid &lt;templateID&gt;        ID for subject template/base directory inside
+                              $SUBJECTS_DIR to be created&quot;
+  --t1s &lt;T1_1&gt; &lt;T1_2&gt; ..    T1 full head inputs for each time point (do not need
+                              to be bias corrected). Requires ABSOLUTE paths!
+  --tpids &lt;tID1&gt; &gt;tID2&gt; ..  IDs for future time points directories inside
+                              $SUBJECTS_DIR to be created later (during --long)
+  --sd  &lt;subjects_dir&gt;      Output directory $SUBJECTS_DIR (or pass via env var)
+  --py &lt;python_cmd&gt;         Command for python, used in both pipelines.
+                              Default: &quot;python3.10 -s&quot;
+                              (-s: do no search for packages in home directory)
+  -h --help                 Print Help
+
+Parallelization options:
+  All of the following options will activate parallel processing of the base and the longitudinal time-point images
+  where possible. Additionally, the number of different processes for segmentation and surface reconstructionis set.
+  --parallel &lt;n&gt;|max        See above, sets the size of the processing pool for segmentation and surface reconstruction
+  --parallel_seg &lt;n&gt;|max    See above, only sets the size of the processing pool for segmentation (default: 1)
+  --parallel_surf &lt;n&gt;|max   See above, only sets the size of the processing pool for surface reconstruction (default: 1)
+
+
+With the exception of --t1, --t2, --sid, --seg_only and --surf_only, all
+run_fastsurfer.sh options are supported, see &#39;run_fastsurfer.sh --help&#39;.
+
+
+REFERENCES:
+
+If you use this for research publications, please cite:
+
+For FastSurfer (both):
+Henschel L, Conjeti S, Estrada S, Diers K, Fischl B, Reuter M, FastSurfer - A
+ fast and accurate deep learning based neuroimaging pipeline, NeuroImage 219
+ (2020), 117012. https://doi.org/10.1016/j.neuroimage.2020.117012
+
+Henschel L*, Kuegler D*, Reuter M. (*co-first). FastSurferVINN: Building
+ Resolution-Independence into Deep Learning Segmentation Methods - A Solution
+ for HighRes Brain MRI. NeuroImage 251 (2022), 118933. 
+ http://dx.doi.org/10.1016/j.neuroimage.2022.118933
+
+And for longitudinal processing:
+Reuter M, Schmansky NJ, Rosas HD, Fischl B. Within-subject template estimation
+ for unbiased longitudinal image analysis, NeuroImage 61:4 (2012).
+ https://doi.org/10.1016/j.neuroimage.2012.02.084
+
+For cerebellum sub-segmentation:
+Faber J*, Kuegler D*, Bahrami E*, et al. (*co-first). CerebNet: A fast and
+ reliable deep-learning pipeline for detailed cerebellum sub-segmentation.
+ NeuroImage 264 (2022), 119703.
+ https://doi.org/10.1016/j.neuroimage.2022.119703
+
+For hypothalamus sub-segemntation:
+Estrada S, Kuegler D, Bahrami E, Xu P, Mousa D, Breteler MMB, Aziz NA, Reuter M.
+ FastSurfer-HypVINN: Automated sub-segmentation of the hypothalamus and adjacent
+ structures on high-resolutional brain MRI. Imaging Neuroscience 2023; 1 1–32.
+ https://doi.org/10.1162/imag_a_00034
+</pre></div>
+</div>
+</section>
 </section>
 
         </article>
@@ -422,23 +474,23 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="fastsurfercnn.download_checkpoints.html">
+          <a class="next-page" href="BATCH.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">FastSurferCNN: download_checkpoints.py</div>
+                <div class="title">BATCH: brun_fastsurfer.sh</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="segstats.html">
+          <a class="prev-page" href="index.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">FastSurferCNN: segstats.py</div>
+                <div class="title">Scripts</div>
                 
               </div>
             </a>
@@ -466,8 +518,27 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">LONG: long_fastsurfer.sh</a><ul>
+<li><a class="reference internal" href="#usage-help-text">Usage help text</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
